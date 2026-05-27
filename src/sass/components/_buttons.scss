@@ -1,0 +1,13 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+.lunch-btn {
+    @include cta-btn ($lunch-btn-color);
+}
+
+.dinner-btn {
+    @include cta-btn($dinner-btn-color);
+}
+
+.book-btn {
+    @include cta-btn($book-btn-color);
+}
