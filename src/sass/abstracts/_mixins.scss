@@ -1,7 +1,7 @@
 @use "variables" as *;
 @mixin cta-btn($background-color) {
     background-color: $background-color;
-    padding: 2em;
+    padding: clamp(0.5rem, 2vw, 1.5rem);
     border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
@@ -10,7 +10,12 @@
     display: flex;
     align-items: center;
     transition: 0.3s;
+    font-size: clamp(1em, 2vw, 1.2em);
     &:hover {
         background-color: rgb(0, 46, 30);
     }
+    /*@media screen and (max-width: 768px) {
+        padding: 0.5em 0.5em;
+        font-size: 1.1em;
+    }*/
 }

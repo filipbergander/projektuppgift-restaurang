@@ -12,23 +12,27 @@
     <header>
         <img src="" alt="Företagslogotyp Osteria Lema">
         <nav>
-            <a href="index.html"><span id="logo" class="material-symbols-outlined">local_pizza</span>Hem</a>
+            <a href="index.html" class="link-home active"><span id="logo" class="material-symbols-outlined">home</span>Hem</a>
         </nav>
     </header>
     <main class="home-main">
         <section class="hero">
-            <h1>Hemtrevligt. Italienskt. Nära. Din lokala Osteria</h1>
+            <div class="hero-text">
+                <h1>Hemtrevligt. Italienskt. Nära. Din lokala Osteria</h1>
+            </div>
             <div id="hero-overlay">
+                <img class="hero-image" src="./images/trattoria.jpg" alt="">
                 <picture>
-
+                    <source srcset="./images/hero-image.avif" type="image/avif">
+                    <img src="./images/hero-image.jpg" alt="">
                 </picture>
             </div>
-            <div class="btn-container">
-                <a href="lunch.html" class="lunch-btn">Lunch<span class="material-symbols-outlined">brunch_dining</span></a>
-                <a href="dinner.html" class="dinner-btn">Middag<span class="material-symbols-outlined">local_dining</span></a>
-                <a href="book.html" class="book-btn">Boka bord<span class="material-symbols-outlined">menu_book_2</span></a>
-            </div>
         </section>
+        <div class="btn-container">
+            <a href="lunch.html" class="lunch-btn">Lunch<span class="material-symbols-outlined">brunch_dining</span></a>
+            <a href="dinner.html" class="dinner-btn">Middag<span class="material-symbols-outlined">local_dining</span></a>
+            <a href="book.html" class="book-btn">Boka bord<span class="material-symbols-outlined">menu_book_2</span></a>
+        </div>
         <section class="about-section">
             <article>
                 <h2>Om oss</h2>
@@ -38,7 +42,7 @@
             </article>
 
             <div>
-                <img src="" alt="Kvist från olivträd">
+                <img src="./images/citrus-tree.png" alt="Citronträd med grenar" class="citrus-tree" width="200" height="150">
             </div>
         </section>
 

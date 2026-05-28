@@ -2,5 +2,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3em;
+    gap: clamp(0.5em, 2vw, 3em);
 }

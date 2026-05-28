@@ -15,9 +15,30 @@ header {
         display: flex;
         flex-direction: column;
         text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
         color: white;
         font-weight: bold;
         margin-left: auto;
-        font-size: 1.2em;
+        font-size: 1.3em;
+    }
+}
+
+.link-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.3em;
+    transition: 0.3s ease;
+    &:hover {
+        color: #ffa600;
+        transform: scale(1.05);
+    }
+    &:active {
+        color: #ff7b00;
+    }
+    span {
+        text-decoration: none;
     }
 }
