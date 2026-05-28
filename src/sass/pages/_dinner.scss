@@ -1,0 +1,26 @@
+.dinner-main {
+    background-color: #F4FFF8;
+}
+
+.dinner-section {
+    h1 {
+        text-align: center;
+    }
+}
+
+.subheading-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-bottom: 3em;
+    p {
+        font-size: 1.2em;
+    }
+}
+
+.food-container {
+    display: flex;
+    justify-content: center;
+    gap: 5em;
+}
