@@ -1,1 +1,7 @@
-.loading-text {}
+@use "../abstracts/animations" as *;
+#loading-text {
+    font-size: 1.5em;
+    animation: pulseText 2s infinite;
+    margin-bottom: 1em;
+    text-align: center;
+}

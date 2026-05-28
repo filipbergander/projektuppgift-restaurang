@@ -1,10 +1,26 @@
-.dinner-main {
+.dinner-body {
     background-color: #F4FFF8;
 }
 
+.dinner-main {
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 .dinner-section {
+    width: 100%;
+    margin: 0 auto;
     h1 {
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.1em;
+        hyphens: auto;
+    }
+    span {
+        font-size: 30px;
     }
 }
 
@@ -23,4 +39,145 @@
     display: flex;
     justify-content: center;
     gap: 5em;
+    width: 70%;
+    padding: 1em;
+    margin: 0 auto;
+    background-color: #f7f3e9;
+    border: 3px double #b8a27a;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.144);
+    border-radius: 12px;
+    h3 {
+        font-size: 1.6em;
+        color: #2b2b2b;
+    }
+    .subheading-item {
+        font-size: 1.2em;
+        color: #555;
+        font-style: italic;
+    }
+    .category-header {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5em;
+        margin-bottom: 0em;
+    }
+}
+
+.dish-items-container {
+    margin: 0em 0 1em;
+    .dish-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.3em 3em;
+        padding: 0.5em;
+        margin-bottom: 1.5em;
+        border-left: 2px solid #b8a27a;
+        border-bottom: 1px solid #dddddd9a;
+    }
+    h4 {
+        margin: 0;
+        font-size: 1.1em;
+        font-weight: 500;
+    }
+    // Låter beskrivningen ta upp hela raden
+    .description-p {
+        max-width: 50ch;
+        color: #555454;
+        font-size: 0.9em;
+        grid-column: 1 /-1;
+        line-height: 1.3;
+    }
+    .price-p {
+        margin-left: 3em;
+        font-size: 1.1em;
+    }
+}
+
+.dish-category {
+    margin-bottom: 1.5em;
+    border-bottom: 2px solid black;
+}
+
+.info-container {
+    width: 70%;
+    background-color: #fff;
+    border-radius: 18px;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em auto;
+    border: 3px double #f3d294;
+    gap: 2em;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.144);
+    line-height: 1.3;
+    h2 {
+        line-height: 1.2;
+        margin-bottom: 0.3em;
+        text-align: center;
+    }
+    p {
+        max-width: 40ch;
+        line-height: 1.3;
+    }
+}
+
+.olive-branch {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    text-align: center;
+    margin: 2em auto;
+}
+
+@media screen and (max-width: 790px) {
+    .food-container {
+        display: block;
+        gap: 5em;
+        width: 100%;
+        padding: 1em;
+        border-radius: 0px;
+    }
+    .info-container {
+        width: 100%;
+        border-radius: 0px;
+        padding: 2em;
+        gap: 1em;
+        line-height: 1.3;
+        h2 {
+            line-height: 1.2;
+            margin-bottom: 0.3em;
+            text-align: center;
+        }
+        p {
+            max-width: 40ch;
+            line-height: 1.3;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .olive-branch {
+        display: block;
+        align-self: center;
+        text-align: center;
+        margin: 2em auto;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .dish-items-container {
+        // Låter beskrivningen ta upp hela raden
+        .description-p {
+            max-width: 50ch;
+            color: #555454;
+            font-size: 0.9em;
+            grid-column: 1 /-1;
+            line-height: 1.3;
+        }
+        .price-p {
+            margin-left: 1em;
+            font-size: 1em;
+        }
+    }
 }

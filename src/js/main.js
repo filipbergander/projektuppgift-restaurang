@@ -71,8 +71,9 @@ function renderDinnerDishes(dinnerDishes) {
 
         // Lägger till elementen till artikeln
         dishItem.appendChild(name);
-        dishItem.appendChild(description);
         dishItem.appendChild(price);
+        dishItem.appendChild(description);
+
 
         // Lägger till rätterna i sin specifika container
         if (dish.category === "Förrätt") {
