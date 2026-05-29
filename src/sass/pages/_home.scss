@@ -1,3 +1,4 @@
+@use "../abstracts/variables" as *;
 .home-main {
     background-color: #F4FFF8;
 }
@@ -46,17 +47,22 @@
         inset: 0;
         top: 50%;
         z-index: 10;
-        text-align: left;
+        text-align: center;
         color: rgb(255, 255, 255);
-        width: 45%;
-        padding: 0 1em;
+        width: 70%;
+        padding: 1em;
         font-weight: bold;
     }
     h1 {
+        font-family: $secondary-font;
         background-color: #00000080;
-        padding: 0.5em;
+        padding: 0.3em 0em;
         border-radius: 8px;
+        width: 50%;
         font-size: clamp(1.5em, 4vw, 2.5em);
+    }
+    span {
+        text-align: left;
     }
 }
 
@@ -123,9 +129,23 @@
             width: 100%;
         }
     }
+    h1 {
+        width: 80%;
+    }
     .hero-image img {
         object-position: 60% 92%;
     }
 }
 
-@media screen and (max-width: 475px) {}
+@media screen and (max-width: 475px) {
+    .hero {
+        .hero-text {
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+    h1 {
+        hyphens: auto;
+        width: 50%;
+    }
+}

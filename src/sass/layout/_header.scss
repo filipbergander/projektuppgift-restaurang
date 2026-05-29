@@ -5,7 +5,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 80px;
+    height: 75px;
     color: white;
     nav {
         width: 100%;
@@ -40,5 +40,19 @@ header {
     }
     span {
         text-decoration: none;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    header {
+        padding: 0 1rem;
+        height: 60px;
+        img {
+            width: 180px;
+            height: auto;
+        }
+    }
+    .link-home {
+        font-size: 1.2em;
     }
 }
