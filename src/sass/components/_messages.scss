@@ -5,3 +5,25 @@
     margin-bottom: 1em;
     text-align: center;
 }
+
+.error-message {
+    color: rgb(207, 2, 2);
+    font-weight: bold;
+    padding-left: 1em;
+    li {
+        margin-bottom: 0.2em;
+        text-align: left;
+    }
+}
+
+.success-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    ul {
+        list-style: none !important;
+    }
+    color: blue;
+}
