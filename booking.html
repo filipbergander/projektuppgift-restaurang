@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trattoria Lema | Middag</title>
+    <title>Trattoria Lema | Boka bord</title>
     <meta name="description" content="Trattoria Lema, din lokala restaurang i Örnsköldsvik med hemlagad italiensk mat.">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
     <link rel="icon" type="image/png" href="/icon/favicon/favicon-96x96.png" sizes="96x96">
@@ -22,75 +22,66 @@
             <a href="index.html" class="link-home"><span class="material-symbols-outlined">home</span>Hem</a>
         </nav>
     </header>
-    <main class="dinner-main">
-        <section class="dinner-section">
-            <h1><span class="material-symbols-outlined">local_dining</span>Middag</h1>
-            <article class="subheading-info">
-                <h2>À la carte | Italienska klassiker</h2>
-                <p>Serveras från 17:00</p>
-            </article>
-            <div id="loading-text"></div>
-            <div class="food-container">
-                <div>
-                    <article id="starter-category" class="dish-category">
-                        <div class="category-header">
-                            <h3>Förrätt</h3>
-                            <p class="subheading-item">Antipasti</p>
-                        </div>
-                        <div class="dish-items-container" id="starter-container">
-                        </div>
-                    </article>
-                    <article id="mains-category" class="dish-category">
-                        <div class="category-header">
-                            <h3>Huvudrätt</h3>
-                            <p class="subheading-item">Secondi</p>
-                        </div>
-                        <div class="dish-items-container" id="mains-container">
-                        </div>
-                    </article>
-                    <article id="dessert-category" class="dish-category">
-                        <div class="category-header">
-                            <h3>Efterrätt</h3>
-                            <p class="subheading-item">Dolci</p>
-                        </div>
-                        <div class="dish-items-container" id="dessert-container">
-                        </div>
-                    </article>
-                </div>
-                <div>
-                    <article id="drink-category" class="dish-category">
-                        <div class="category-header">
-                            <h3> Dryck </h3>
-                            <p class="subheading-item">Bevanda</p>
-                        </div>
-                        <div class="dish-items-container" id="drink-container">
-                        </div>
-                    </article>
-                </div>
+    <main class="booking-main">
+        <h1><span class="material-symbols-outlined">calendar_add_on</span>Boka bord</h1>
+        <form id="booking-form" method="post">
+            <h2>Fyll i dina uppgifter och önskemål</h2>
+
+            <div class="error-message">
+                <ul></ul>
             </div>
-        </section>
-        <div>
-            <img src="./images/olive-branch.png" alt="Gren från olivträd" loading="lazy" width="400" class="olive-branch">
-        </div>
-        <div class="info-container">
-            <article>
-                <h2>Gällande allergier</h2>
-                <p>Har du allergier eller specialkost?</p>
-                <p>Informera gärna personalen innan du beställer så hjälper vi dig.</p>
-            </article>
-            <article>
-                <h2>Goda råd</h2>
-                <ul>
-                    <li>Alla rätter tillagas från grunden.</li>
-                    <li>Fråga gärna om dagens rekommendationer.</li>
-                    <li>Vi gör vårat bästa - tack för ditt tålamod.</li>
-                </ul>
-            </article>
-            <article>
-                <h2>Information</h2>
-                <p>Vi använder alltid färska råvaror och italienska produkter av hög kvalitet.</p>
-            </article>
-        </div>
+
+            <div class="success-message">
+                <ul></ul><span class="loading-spinner hidden"></span>
+            </div>
+
+            <div class="input-area">
+                <label for="booking-name">Namn</label>
+                <input type="text" id="booking-name" name="booking-name" placeholder="Skriv ditt namn">
+            </div>
+
+            <div class="input-area">
+                <label for="booking-email">Din email</label>
+                <input type="text" id="booking-email" name="booking-email" placeholder="Skriv email">
+            </div>
+
+            <div class="input-area">
+                <label for="booking-guests">Antal gäster</label>
+                <input type="number" id="booking-guests" name="booking-guests" placeholder="Ange antal gäster">
+            </div>
+
+            <div class="input-area">
+                <label for="booking-date">Datum</label>
+                <input type="date" id="booking-date" name="booking-date" placeholder="Ange datum">
+            </div>
+
+            <div class="input-area">
+                <label for="booking-date">Tid</label>
+                <input type="time" id="booking-time" name="booking-time" min="16:00" max="22:00" placeholder="Ange tid">
+            </div>
+
+            <div class="input-area">
+                <label for="booking-telephone">Telefon</label>
+                <input type="tel" id="booking-telephone" name="booking-telephone" placeholder="Ange telefonnummer">
+            </div>
+
+            <div class="input-area">
+                <label for="booking-message">Meddelande</label>
+                <textarea id="booking-message" name="booking-message" placeholder="Något vi bör känna till? Skriv din kommentar här" rows="4" cols="50"></textarea>
+            </div>
+
+            <div class="input-area-privacy">
+                <input type="checkbox" id="booking-privacy" name="booking-privacy">
+                <label class="checkbox-label" for="booking-privacy">Jag intygar att jag har läst och förstått restaurangens <a href="#" onclick="event.preventDefault()">integritetspolicy</a>.</label>
+            </div>
+            <div>
+                <p id="button-error-text" class="hidden">Du måste godkänna integritetspolicyn</p>
+            </div>
+            <button id="new-booking-btn" type="submit">Slutför bokning<span id="add-user-icon"
+                    class="material-symbols-outlined">
+                    assignment_turned_in
+                </span></button>
+        </form>
     </main>
     <footer>
         <div class="footer-container">
