@@ -5,8 +5,8 @@ import '../sass/main.scss'
 //const url = "https://fb-backend-api-p9fp.onrender.com";
 const url = "http://localhost:3000";
 document.addEventListener("DOMContentLoaded", () => {
-    //fetchDinnerDishes();
-    //fetchCategoryImages();
+    fetchDinnerDishes();
+    fetchCategoryImages();
     initBookingForm();
 });
 
@@ -28,8 +28,6 @@ async function fetchDinnerDishes() {
             loadingText.style.textAlign = "center";
             return;
         }
-
-        console.log(dinnerDishes);
         renderDinnerDishes(dinnerDishes);
     } catch (error) {
         console.error("Kunde inte hämta middags-maträtter: ", error);
@@ -107,7 +105,6 @@ async function fetchCategoryImages() {
             // loadingImageText.style.textAlign = "center";
             return;
         }
-        console.log(dataImages);
         renderDinnerImages(dataImages) // Anropar funktionen för att filtrera bilderna efter deras kategorier
     } catch (error) {
         console.error("Kunde inte hämta kategori-bilder: ", error);
@@ -356,6 +353,7 @@ function resetBookingForm() {
     const dateInput = document.getElementById("booking-date");
     const timeInput = document.getElementById("booking-time");
     const guestsInput = document.getElementById("booking-guests");
+    const phoneInput = document.getElementById("booking-telephone");
     const messageInput = document.getElementById("booking-message");
     const privacyCheckbox = document.getElementById("booking-privacy");
 
@@ -364,6 +362,7 @@ function resetBookingForm() {
     dateInput.value = "";
     timeInput.value = "";
     guestsInput.value = "";
+    phoneInput.value = "";
     messageInput.value = "";
     privacyCheckbox.checked = false;
 }
