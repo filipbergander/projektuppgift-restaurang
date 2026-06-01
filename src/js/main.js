@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Hämtar maträtter till middagsmeny från webbtjänst
 async function fetchDinnerDishes() {
+    // Om man inte är på sidan med middagsmenyn -> return
     const loadingText = document.getElementById("loading-text");
+    if (!loadingText) return;
     // Meddelande innan data har hämtats i backend
     loadingText.textContent = "Hämtar maträtter från databasen, vänta på att servern ska vakna..."
     try {
@@ -31,9 +33,17 @@ async function fetchDinnerDishes() {
         renderDinnerDishes(dinnerDishes);
     } catch (error) {
         console.error("Kunde inte hämta middags-maträtter: ", error);
+        // Vid connection error om inte backend skulle vara igång
+        if (error.message === "Failed to fetch") {
+            loadingText.textContent = "Kunde inte ansluta till servern, kontrollera att backend är igång..."
+            loadingText.style.textAlign = "center";
+            loadingText.style.color = "#a00000";
+            return;
+        }
         // Felmeddelanden i DOM
-        loadingText.textContent = "Kunde inte hämta maträtter för middagsmeny från servern, prova logga in igen..."
+        loadingText.textContent = "Fel uppstod när maträtterna skulle hämtas in..."
         loadingText.style.textAlign = "center";
+        loadingText.style.color = "#a00000";
     }
 }
 
@@ -92,8 +102,9 @@ function renderDinnerDishes(dinnerDishes) {
 
 // Hämtar in bilder för varje kategori av mat/dryck från backend
 async function fetchCategoryImages() {
+    const loadingText = document.getElementById("loading-text");
     const imageSection = document.querySelectorAll(".dish-category");
-    if (!imageSection) return; // Om ingen container för maträtterna tillsammans med bilder finns, -> return
+    if (!loadingText) return; // Om ingen container för maträtterna tillsammans med bilder finns, -> return
     try {
         const response = await fetch(`${url}/dinner/category-images`);
         if (!response.ok) {
@@ -199,12 +210,18 @@ function initBookingForm() {
             return;
         }
 
-        if (!name) errors.push("Fyll i ditt namn");
+        if (!name) {
+            errors.push("Fyll i ditt namn")
+        } else if (name.length > 30) {
+            errors.push("Namnet kan inte vara längre än 30 tecken");
+        }
 
         if (!email) {
             errors.push("Fyll i din email");
         } else if (!email.includes("@") || !email.includes(".") || email.length < 5) {
             errors.push("Fyll i en giltig email");
+        } else if (email.length > 40) {
+            errors.push("Emailen kan inte vara längre än 40 tecken");
         }
 
         if (!guests) {
@@ -288,6 +305,9 @@ async function createBooking() {
     // Felmeddelande containern
     const errorMsgList = bookingForm.querySelector(".error-message ul");
 
+    loadingSpinner.classList.remove("hidden"); // Visar laddningsikonen
+    successMsg.innerHTML = ""; // Tömmer tidigare "success"-meddelanden
+    errorMsgList.innerHTML = ""; // Tömmer tidigare felmeddelanden
     try {
         const response = await fetch(`${url}/dinner/bookings`, {
             method: "POST",
@@ -304,24 +324,21 @@ async function createBooking() {
                 message
             })
         });
-
         const data = await response.json();
 
         // Om något blev fel i backend
         if (!response.ok) {
             loadingSpinner.classList.add("hidden");
-            throw new Error(data.message || "Något gick fel, kunde inte skapa ny bokning");
             displayErrorMessages([data.message || "Något gick fel, kunde inte skapa ny bokning"], errorMsgList);
+            bookingForm.scrollIntoView({ behavior: "smooth" });
             return;
         }
 
-        // Vid lyckats respons
+        // Vid lyckad respons
         errorMsgList.innerHTML = ""; // Tömmer
         successMsg.innerHTML = "<li>Bokningen skapas!</li>";
-        loadingSpinner.classList.remove("hidden");
         setTimeout(() => {
             loadingSpinner.classList.add("hidden"); // Döljer ikonen
-
             // Resettar formuläret efter lyckad registrering
             successMsg.innerHTML = "";
             errorMsgList.innerHTML = "";
@@ -329,9 +346,25 @@ async function createBooking() {
         }, 1500);
 
     } catch (error) {
+        if (error.message === "timeout") {
+            loadingSpinner.classList.add("hidden");
+            loginBtn.disabled = false;
+            loginBtn.classList.remove("disabled");
+            displayErrorMessages(["Servern startar upp...", "Prova igen strax"], errorMsgList);
+            bookingForm.scrollIntoView({ behavior: "smooth" });
+            return;
+        } else if (error.message === "Failed to fetch") { // Om servern inte är igång eller anropas på fel url
+            displayErrorMsg(["Kunde inte ansluta till servern, kontrollera att backend är igång..."], errorMsgList);
+            loginBtn.disabled = false;
+            loginBtn.classList.remove("disabled");
+            loadingSpinner.classList.add("hidden");
+            bookingForm.scrollIntoView({ behavior: "smooth" });
+            return;
+        }
         console.error("Kunde inte göra bokningen: ", error);
         loadingSpinner.classList.add("hidden");
-        displayErrorMessages([error.message || "Något gick fel, kunde inte skapa ny bokning"], errorMsgList);
+        displayErrorMessages(["Något gick fel, kunde inte skapa ny bokning"], errorMsgList);
+        bookingForm.scrollIntoView({ behavior: "smooth" });
     }
 }
 

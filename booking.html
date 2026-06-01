@@ -32,64 +32,70 @@
     </div>
     <main class="booking-main">
         <h1><span class="material-symbols-outlined">calendar_add_on</span>Boka bord</h1>
-        <form id="booking-form" method="post">
-            <h2>Kvällsmeny</h2>
-            <p>Fyll i dina uppgifter och önskemål</p>
+        <div class="booking-container">
+            <form id="booking-form" method="post">
+                <h2>Kvällsmeny</h2>
+                <p>Fyll i dina uppgifter och önskemål</p>
 
-            <div class="error-message">
-                <ul></ul>
-            </div>
+                <div class="error-message">
+                    <ul></ul>
+                </div>
 
-            <div class="input-area">
-                <label for="booking-name">Namn</label>
-                <input type="text" id="booking-name" name="booking-name" placeholder="Skriv ditt namn">
-            </div>
+                <div class="input-area">
+                    <label for="booking-name">Namn</label>
+                    <input type="text" id="booking-name" name="booking-name" maxlength="30" placeholder="Skriv ditt namn">
+                </div>
 
-            <div class="input-area">
-                <label for="booking-email">Din email</label>
-                <input type="text" id="booking-email" name="booking-email" placeholder="Skriv email">
-            </div>
+                <div class="input-area">
+                    <label for="booking-email">Din email</label>
+                    <input type="text" id="booking-email" name="booking-email" maxlength="40" placeholder="Skriv email">
+                </div>
 
-            <div class="input-area">
-                <label for="booking-guests">Antal gäster</label>
-                <input type="number" id="booking-guests" name="booking-guests" placeholder="Ange antal gäster">
-            </div>
+                <div class="input-area">
+                    <label for="booking-guests">Antal gäster</label>
+                    <input type="number" id="booking-guests" name="booking-guests" min="1" max="10" placeholder="Ange antal gäster">
+                </div>
 
-            <div class="input-area">
-                <label for="booking-date">Datum</label>
-                <input type="date" id="booking-date" name="booking-date" placeholder="Ange datum">
-            </div>
+                <div class="input-area">
+                    <label for="booking-date">Datum</label>
+                    <input type="date" id="booking-date" name="booking-date" placeholder="Ange datum">
+                </div>
 
-            <div class="input-area">
-                <label for="booking-date">Tid</label>
-                <input type="time" id="booking-time" name="booking-time" min="16:00" max="22:00" placeholder="Ange tid">
-            </div>
+                <div class="input-area">
+                    <label for="booking-time">Tid</label>
+                    <input type="time" id="booking-time" name="booking-time" min="16:00" max="22:00" value="16:00" step="900" placeholder="Ange tid">
+                </div>
 
-            <div class="input-area">
-                <label for="booking-telephone">Telefon</label>
-                <input type="tel" id="booking-telephone" name="booking-telephone" placeholder="Ange telefonnummer">
-            </div>
+                <div class="input-area">
+                    <label for="booking-telephone">Telefon</label>
+                    <input type="tel" id="booking-telephone" name="booking-telephone" maxlength="16" minlength="7" placeholder="Ange telefonnummer">
+                </div>
 
-            <div class="input-area">
-                <label for="booking-message">Meddelande</label>
-                <textarea id="booking-message" name="booking-message" placeholder="Något vi bör känna till? Skriv din kommentar här" rows="4" cols="50"></textarea>
-            </div>
+                <div class="input-area">
+                    <label for="booking-message">Meddelande</label>
+                    <textarea id="booking-message" name="booking-message" maxlength="150" placeholder="Något vi bör känna till? Skriv din kommentar här" rows="4" cols="50"></textarea>
+                </div>
 
-            <div class="input-area-privacy">
-                <input type="checkbox" id="booking-privacy" name="booking-privacy">
-                <label class="checkbox-label" for="booking-privacy">Jag intygar att jag har läst och förstått restaurangens <a href="#" onclick="event.preventDefault()">integritetspolicy</a>.</label>
+                <div class="input-area-privacy">
+                    <input type="checkbox" id="booking-privacy" name="booking-privacy">
+                    <label class="checkbox-label" for="booking-privacy">Jag intygar att jag har läst och förstått
+                        restaurangens <a href="#" onclick="event.preventDefault()">integritetspolicy</a>.</label>
+                </div>
+                <div>
+                    <p id="button-error-text" class="hidden">Du måste godkänna integritetspolicyn</p>
+                </div>
+                <div class="success-message">
+                    <ul></ul><span class="loading-spinner hidden"></span>
+                </div>
+                <button id="new-booking-btn" type="submit">Slutför bokning<span id="add-user-icon"
+                        class="material-symbols-outlined">
+                        assignment_turned_in
+                    </span></button>
+            </form>
+            <div class="booking-image-container">
+                <img src="./images/druvor.svg" loading="lazy" alt="Vindruvor med blommor" width="300" height="400" class="booking-image">
             </div>
-            <div>
-                <p id="button-error-text" class="hidden">Du måste godkänna integritetspolicyn</p>
-            </div>
-            <div class="success-message">
-                <ul></ul><span class="loading-spinner hidden"></span>
-            </div>
-            <button id="new-booking-btn" type="submit">Slutför bokning<span id="add-user-icon"
-                    class="material-symbols-outlined">
-                    assignment_turned_in
-                </span></button>
-        </form>
+        </div>
     </main>
     <footer>
         <div class="footer-container">
