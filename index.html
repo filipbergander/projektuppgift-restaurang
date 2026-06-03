@@ -19,11 +19,28 @@
     <!--Header med logotyp och navigering till startsidan-->
     <header>
         <a href="index.html" class="logo-link"><img src="./icon/logo-lema.png" alt="Företagslogotyp Trattoria Lema" width="260" height="60"></a>
-        <nav>
-            <a href="index.html" class="link-home active"><span class="material-symbols-outlined">home</span>Hem</a>
+        <div class="search-area">
+            <button id="open-sidebarbutton" type="button" aria-controls="navbar" aria-expanded="false" aria-label="Öppna huvudmeny">
+                <span class="material-symbols-outlined">
+                    menu
+                </span>Meny
+            </button>
+        </div>
+        <nav id="navbar" aria-label="Huvudmeny">
+            <ul>
+                <li><button id="close-sidebarbutton" type="button" aria-label="Stäng huvudmeny">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>Stäng
+                    </button></li>
+                <li><a href="dinner.html" class="nav-link">Kvällsmeny</a></li>
+                <li><a href="booking.html" class="nav-link">Boka bord</a></li>
+                <li><a href="index.html" class="nav-link" aria-current="page">Hem</a></li>
+            </ul>
         </nav>
+        <div id="overlay" aria-hidden="true" onclick="closeSidebar()"></div>
     </header>
-    <main class="home-main">
+    <main class="main" id="home-main">
         <!--Hero-bild med rubrik-->
         <section class="hero">
             <picture class="hero-image">

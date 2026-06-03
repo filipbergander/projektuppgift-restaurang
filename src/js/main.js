@@ -4,12 +4,93 @@ import '../sass/main.scss'
 // Webbtjänst
 const url = "https://fb-backend-api-p9fp.onrender.com";
 //const url = "http://localhost:3000";
+
+// Variabler
+const main = document.querySelector("main");
+const openBtn = document.getElementById("open-sidebarbutton");
+const closeBtn = document.getElementById("close-sidebarbutton");
+const navbar = document.getElementById("navbar");
+const overlay = document.getElementById("overlay");
+const navLinks = document.querySelectorAll(".nav-link");
+
+// Känner av om skärmstorleken på användarens enhet
+const mobileQuery = window.matchMedia("(max-width:900px)");
+
+let rotateBookingIcon = 0; // Rotera-ikon till att resetta matformuläret
+const resetBookingFormBtn = document.getElementById("reset-booking-form");
+
 document.addEventListener("DOMContentLoaded", () => {
     fetchDinnerDishes(); // Hämtar in maträtter till kvällsmenyn
     fetchCategoryImages(); // hämtar in bilder för kvällsmenyn
     initBookingForm(); // Initierar bokningsformuläret
     fetchNewsArticle(); // Hämtar in nyhetsartikel
+
+    // Lyssnare för att stänga och öppna sidomenyn
+    openBtn.addEventListener("click", openSidebar);
+    closeBtn.addEventListener("click", closeSidebar);
+    overlay.addEventListener("click", closeSidebar);
+
+    // När man klickar på en av navigeringslänkarna i sidomenyn i mobilläge så stängs sidomenyn
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            if (mobileQuery.matches) {
+                setTimeout(() => {
+                    closeSidebar(); // Stänger sidomenyn
+                }, 200);
+            }
+        });
+    });
+
+    // Återställer bokningsformuläret och roterar ikonen, reset-knapp längst upp till höger i bokningsformuläret
+    if (resetBookingFormBtn) {
+        resetBookingFormBtn.addEventListener("click", () => {
+            resetBookingFormBtn.offsetWidth;
+            rotateBookingIcon += -360; // Ett varv
+            resetBookingFormBtn.style.transform = `rotate(${rotateBookingIcon}deg)`; // Roterar ett varv
+            resetBookingForm(); // Resettar formuläret
+        });
+    }
 });
+
+/**
+ * Öppnar sidomenyn och visar overlay över huvudinnehållet för skärmstorlekar under 900px
+ * @returns {void} - Returnerar ingenting
+ */
+function openSidebar() {
+    if (!navbar || !overlay || !openBtn) return;
+
+    navbar.classList.add("show"); // Visar navbaren
+    overlay.classList.add("show"); // Visar overlay
+    overlay.style.display = "block";
+    openBtn.setAttribute("aria-expanded", "true"); // True när sidomenyn är öppen
+    openBtn.classList.add("hidden"); // Döljer knappen
+    if (mobileQuery.matches) {
+        main.setAttribute("inert", ""); // Gör innehållet ej klickbart
+        navbar.removeAttribute("inert"); // Gör länkarna klickbara
+    }
+    closeBtn.focus();
+}
+
+/**
+ * Stänger sidomenyn och döljer overlay, samt gör innehållet klickbart igen
+ */
+function closeSidebar() {
+    navbar.classList.remove("show"); // Döljer sidomenyn
+    overlay.classList.remove("show"); // Döljer overlay
+    overlay.style.display = "none"; // Dölj overlay när sidomenyn är stängd
+    openBtn.setAttribute("aria-expanded", "false"); // Ändrar aria-expanded till false när sidomenyn är stängd
+    if (mobileQuery.matches) {
+        main.removeAttribute("inert"); // Tar bort inert så att interaktionen fungerar i huvudinnehållet när sidomenyn är stängd
+        navbar.setAttribute("inert", ""); // Lägger till inert för att blockera interaktionen med sidomenyn när den är stängd 
+    } else { // Funktionen med att klicka på navigeringsmenyn ska fungera i desktopläge
+        main.removeAttribute("inert");
+        navbar.removeAttribute("inert");
+    }
+    // Liten delay när knappen ska visas igen
+    setTimeout(() => {
+        openBtn.classList.remove("hidden");
+    }, 200);
+}
 
 /**
  * Hämtar maträtter till middagsmeny från webbtjänsten
@@ -494,6 +575,11 @@ function resetBookingForm() {
     const messageInput = document.getElementById("booking-message");
     const privacyCheckbox = document.getElementById("booking-privacy");
 
+    //Meddelanden
+    const errorMsgList = bookingForm.querySelector(".error-message ul");
+    const successMsg = bookingForm.querySelector(".success-message ul");
+    const errorText = document.getElementById("button-error-text");
+
     // Tömmer inputs och återställer checkboxen
     nameInput.value = "";
     emailInput.value = "";
@@ -503,4 +589,9 @@ function resetBookingForm() {
     phoneInput.value = "";
     messageInput.value = "";
     privacyCheckbox.checked = false;
+
+    // Tömmer meddelanden
+    errorMsgList.innerHTML = "";
+    successMsg.innerHTML = "";
+    errorText.classList.add("hidden");
 }

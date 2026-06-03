@@ -1,6 +1,6 @@
 @use "../abstracts/variables" as *;
 // Startsidan
-.home-main {
+#home-main {
     background-color: #F4FFF8;
 }
 
@@ -171,9 +171,6 @@ h2 {
     .info-sections {
         width: 80%;
     }
-}
-
-@media screen and (max-width: 790px) {
     .hero {
         position: relative;
         width: 100%;

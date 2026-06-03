@@ -18,10 +18,27 @@
 <body class="dinner-body">
     <!--Header med logotyp och navigering till startsidan-->
     <header>
-        <a href="index.html"><img src="./icon/logo-lema.png" alt="Företagslogotyp Trattoria Lema" width="260" height="60"></a>
-        <nav>
-            <a href="index.html" class="link-home"><span class="material-symbols-outlined">home</span>Hem</a>
+        <a href="index.html" class="logo-link"><img src="./icon/logo-lema.png" alt="Företagslogotyp Trattoria Lema" width="260" height="60"></a>
+        <div class="search-area">
+            <button id="open-sidebarbutton" type="button" aria-controls="navbar" aria-expanded="false" aria-label="Öppna huvudmeny">
+                <span class="material-symbols-outlined">
+                    menu
+                </span>Meny
+            </button>
+        </div>
+        <nav id="navbar" aria-label="Huvudmeny">
+            <ul>
+                <li><button id="close-sidebarbutton" type="button" aria-label="Stäng huvudmeny">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>Stäng
+                    </button></li>
+                <li><a href="dinner.html" class="nav-link">Kvällsmeny</a></li>
+                <li><a href="booking.html" class="nav-link" aria-current="page">Boka bord</a></li>
+                <li><a href="index.html" class="nav-link">Hem</a></li>
+            </ul>
         </nav>
+        <div id="overlay" aria-hidden="true" onclick="closeSidebar()"></div>
     </header>
     <!--Brödsmulor för navigering-->
     <div class="sub-header">
@@ -32,13 +49,15 @@
             </ol>
         </nav>
     </div>
-    <main class="booking-main">
+    <main id="booking-main" class="main">
         <h1><span class="material-symbols-outlined">calendar_add_on</span>Boka bord</h1>
         <div class="booking-container">
             <!--Bokningsformulär för bord-->
             <form id="booking-form" method="post">
                 <h2>Kvällsmeny</h2>
                 <p>Fyll i dina uppgifter och önskemål</p>
+                <button id="reset-booking-form" class="reset-btn" type="button"><span
+                    class="material-symbols-outlined">restart_alt</span></button>
                 <!--Felmeddelanden-->
                 <div class="error-message">
                     <ul></ul>
