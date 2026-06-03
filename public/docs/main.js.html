@@ -52,6 +52,7 @@
   const navbar = document.getElementById("navbar");
   const overlay = document.getElementById("overlay");
   const navLinks = document.querySelectorAll(".nav-link");
+  const bookingDetailsBtn = document.getElementById("booking-details-btn");
 
   // Känner av om skärmstorleken på användarens enhet
   const mobileQuery = window.matchMedia("(max-width:900px)");
@@ -90,6 +91,14 @@
               resetBookingForm(); // Resettar formuläret
           });
       }
+
+      if (bookingDetailsBtn) {
+          bookingDetailsBtn.addEventListener("click", () => {
+              document.getElementById("booking-overlay").classList.add("hidden");
+              resetBookingForm(); // Resettar formuläret
+          });
+      }
+
   });
 
   /**
@@ -479,11 +488,11 @@
           // Om något blev fel i backend
           if (!response.ok) {
               loadingSpinner.classList.add("hidden");
-              displayErrorMessages([data.message || "Något gick fel, kunde inte skapa ny bokning"], errorMsgList);
+              displayErrorMessages([data.error], errorMsgList);
               bookingForm.scrollIntoView({ behavior: "smooth" });
               return;
           }
-
+          localStorage.setItem("booking-email", email); // Sparar email i localStorage för att kunna visa i bokningsbekräftelsen
           // Vid lyckad respons
           errorMsgList.innerHTML = ""; // Tömmer
           successMsg.innerHTML = "&lt;li>Bokningen skapas!&lt;/li>";
@@ -492,6 +501,7 @@
               // Resettar formuläret efter lyckad registrering
               successMsg.innerHTML = "";
               errorMsgList.innerHTML = "";
+              displayBookingOverlay(); // Visar overlay med bokningsbekräftelse
               resetBookingForm();
           }, 1500);
 
@@ -518,6 +528,26 @@
           bookingForm.scrollIntoView({ behavior: "smooth" });
       }
   }
+  /**
+   * Visar en overlay med bokningsbekräftelse, hämtar email från localStorage för att visa i bekräftelsen
+   * @returns {void} - Returnerar ingenting
+   */
+  function displayBookingOverlay() {
+      // Element i DOM för bokningen
+      const bookingOverlay = document.getElementById("booking-overlay");
+      const emailDisplay = document.getElementById("booking-email-display");
+      if (!bookingOverlay) return;
+
+      // Försöker hämta email från localStorage
+      const bookingEmail = localStorage.getItem("booking-email");
+      if (bookingEmail) {
+          emailDisplay.textContent = bookingEmail; // Om email finns visas den
+      } else {
+          emailDisplay.textContent = "din mejl"; // Fallback om ingen email fanns
+      }
+      bookingOverlay.classList.remove("hidden"); // Visar overlayen med texter
+  }
+
   /**
    * Hämtar in publicerad nyhetsartikel från backend
    */
@@ -624,7 +654,7 @@
       nameInput.value = "";
       emailInput.value = "";
       dateInput.value = "";
-      timeInput.value = "";
+      timeInput.value = "16:00";
       guestsInput.value = "";
       phoneInput.value = "";
       messageInput.value = "";
@@ -634,6 +664,9 @@
       errorMsgList.innerHTML = "";
       successMsg.innerHTML = "";
       errorText.classList.add("hidden");
+
+      // Tömmer localStorage på användarens email
+      localStorage.removeItem("booking-email");
   }</code></pre>
         </article>
     </section>
@@ -644,13 +677,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#closeSidebar">closeSidebar</a></li><li><a href="global.html#createBooking">createBooking</a></li><li><a href="global.html#displayErrorMessages">displayErrorMessages</a></li><li><a href="global.html#fetchCategoryImages">fetchCategoryImages</a></li><li><a href="global.html#fetchDinnerDishes">fetchDinnerDishes</a></li><li><a href="global.html#fetchNewsArticle">fetchNewsArticle</a></li><li><a href="global.html#initBookingForm">initBookingForm</a></li><li><a href="global.html#openSidebar">openSidebar</a></li><li><a href="global.html#renderDinnerDishes">renderDinnerDishes</a></li><li><a href="global.html#renderDinnerImages">renderDinnerImages</a></li><li><a href="global.html#renderNewsArticle">renderNewsArticle</a></li><li><a href="global.html#resetBookingForm">resetBookingForm</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#closeSidebar">closeSidebar</a></li><li><a href="global.html#createBooking">createBooking</a></li><li><a href="global.html#displayBookingOverlay">displayBookingOverlay</a></li><li><a href="global.html#displayErrorMessages">displayErrorMessages</a></li><li><a href="global.html#fetchCategoryImages">fetchCategoryImages</a></li><li><a href="global.html#fetchDinnerDishes">fetchDinnerDishes</a></li><li><a href="global.html#fetchNewsArticle">fetchNewsArticle</a></li><li><a href="global.html#initBookingForm">initBookingForm</a></li><li><a href="global.html#openSidebar">openSidebar</a></li><li><a href="global.html#renderDinnerDishes">renderDinnerDishes</a></li><li><a href="global.html#renderDinnerImages">renderDinnerImages</a></li><li><a href="global.html#renderNewsArticle">renderNewsArticle</a></li><li><a href="global.html#resetBookingForm">resetBookingForm</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Jun 03 2026 11:42:45 GMT+0200 (centraleuropeisk sommartid)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Jun 03 2026 20:17:40 GMT+0200 (centraleuropeisk sommartid)
 </footer>
 
 <script> prettyPrint(); </script>

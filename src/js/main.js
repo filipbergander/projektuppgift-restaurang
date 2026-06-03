@@ -24,6 +24,7 @@
   const navbar = document.getElementById("navbar");
   const overlay = document.getElementById("overlay");
   const navLinks = document.querySelectorAll(".nav-link");
+  const bookingDetailsBtn = document.getElementById("booking-details-btn");
 
   // Känner av om skärmstorleken på användarens enhet
   const mobileQuery = window.matchMedia("(max-width:900px)");
@@ -62,6 +63,14 @@
               resetBookingForm(); // Resettar formuläret
           });
       }
+
+      if (bookingDetailsBtn) {
+          bookingDetailsBtn.addEventListener("click", () => {
+              document.getElementById("booking-overlay").classList.add("hidden");
+              resetBookingForm(); // Resettar formuläret
+          });
+      }
+
   });
 
   /**
@@ -451,11 +460,11 @@
           // Om något blev fel i backend
           if (!response.ok) {
               loadingSpinner.classList.add("hidden");
-              displayErrorMessages([data.message || "Något gick fel, kunde inte skapa ny bokning"], errorMsgList);
+              displayErrorMessages([data.error], errorMsgList);
               bookingForm.scrollIntoView({ behavior: "smooth" });
               return;
           }
-
+          localStorage.setItem("booking-email", email); // Sparar email i localStorage för att kunna visa i bokningsbekräftelsen
           // Vid lyckad respons
           errorMsgList.innerHTML = ""; // Tömmer
           successMsg.innerHTML = "<li>Bokningen skapas!</li>";
@@ -464,6 +473,7 @@
               // Resettar formuläret efter lyckad registrering
               successMsg.innerHTML = "";
               errorMsgList.innerHTML = "";
+              displayBookingOverlay(); // Visar overlay med bokningsbekräftelse
               resetBookingForm();
           }, 1500);
 
@@ -490,6 +500,26 @@
           bookingForm.scrollIntoView({ behavior: "smooth" });
       }
   }
+  /**
+   * Visar en overlay med bokningsbekräftelse, hämtar email från localStorage för att visa i bekräftelsen
+   * @returns {void} - Returnerar ingenting
+   */
+  function displayBookingOverlay() {
+      // Element i DOM för bokningen
+      const bookingOverlay = document.getElementById("booking-overlay");
+      const emailDisplay = document.getElementById("booking-email-display");
+      if (!bookingOverlay) return;
+
+      // Försöker hämta email från localStorage
+      const bookingEmail = localStorage.getItem("booking-email");
+      if (bookingEmail) {
+          emailDisplay.textContent = bookingEmail; // Om email finns visas den
+      } else {
+          emailDisplay.textContent = "din mejl"; // Fallback om ingen email fanns
+      }
+      bookingOverlay.classList.remove("hidden"); // Visar overlayen med texter
+  }
+
   /**
    * Hämtar in publicerad nyhetsartikel från backend
    */
@@ -606,4 +636,7 @@
       errorMsgList.innerHTML = "";
       successMsg.innerHTML = "";
       errorText.classList.add("hidden");
+
+      // Tömmer localStorage på användarens email
+      localStorage.removeItem("booking-email");
   }

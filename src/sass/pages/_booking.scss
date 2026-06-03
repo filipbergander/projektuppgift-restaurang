@@ -73,6 +73,13 @@
         }
     }
     
+    .input-date-time {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        width: 100%;
+    }
+    
     // Textarean inom bokningsformuläret, går bara att ändra i höjd så att den max är 300px
     textarea {
         min-height: 150px;
@@ -157,6 +164,13 @@
                 width: 70%;
                 height: auto;
             }
+        }
+    }
+    
+    @media screen and (max-width: 330px) {
+        .input-date-time {
+            flex-direction: column;
+            align-items: flex-start;
         }
     }
     
