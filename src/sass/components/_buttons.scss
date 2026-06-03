@@ -12,3 +12,22 @@
 .book-btn {
     @include cta-btn($book-btn-color);
 }
+
+#booking-details-btn {
+    background-color: #fff;
+    color: #048a0f;
+    font-weight: bold;
+    justify-content: center;
+    margin: 0 auto;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 28px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease;
+    &:hover {
+        background-color: #e0e0e0;
+    }
+}

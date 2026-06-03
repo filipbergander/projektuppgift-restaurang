@@ -57,7 +57,7 @@
                 <h2>Kvällsmeny</h2>
                 <p>Fyll i dina uppgifter och önskemål</p>
                 <button id="reset-booking-form" class="reset-btn" type="button"><span
-                    class="material-symbols-outlined">restart_alt</span></button>
+                        class="material-symbols-outlined">restart_alt</span></button>
                 <!--Felmeddelanden-->
                 <div class="error-message">
                     <ul></ul>
@@ -78,14 +78,16 @@
                     <input type="number" id="booking-guests" name="booking-guests" min="1" max="10" placeholder="Ange antal gäster">
                 </div>
 
-                <div class="input-area">
-                    <label for="booking-date">Datum</label>
-                    <input type="date" id="booking-date" name="booking-date">
-                </div>
+                <div class="input-date-time">
+                    <div class="input-area">
+                        <label for="booking-date">Datum</label>
+                        <input type="date" id="booking-date" name="booking-date">
+                    </div>
 
-                <div class="input-area">
-                    <label for="booking-time">Tid</label>
-                    <input type="time" id="booking-time" name="booking-time" min="16:00" max="22:00" value="16:00" step="900">
+                    <div class="input-area">
+                        <label for="booking-time">Tid</label>
+                        <input type="time" id="booking-time" name="booking-time" min="16:00" max="22:00" value="16:00" step="900">
+                    </div>
                 </div>
 
                 <div class="input-area">
@@ -115,6 +117,15 @@
                         assignment_turned_in
                     </span></button>
             </form>
+            <!--Overlay för bokningsbekräftelse-->
+            <div id="booking-overlay" class="booking-overlay hidden">
+                <section class="booking-overlay-content">
+                    <h3><span id="booking-icon" class="material-symbols-outlined">task_alt</span>Tack för din bokning!</h3>
+                    <p>Detaljerna skickades till <span id="booking-email-display"></span></p>
+                    <p>Vi hör av oss när bokningen är godkänd.</p>
+                    <button id="booking-details-btn" type="button">Stäng</button>
+                </section>
+            </div>
             <!--Bild under formuläret-->
             <div class="booking-image-container">
                 <img src="./images/druvor.svg" loading="lazy" alt="Vindruvor med blommor" width="300" height="400" class="booking-image">
