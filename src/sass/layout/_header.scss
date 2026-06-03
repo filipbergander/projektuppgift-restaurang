@@ -1,3 +1,4 @@
+// Specifika regler för headern
 header {
     width: 100%;
     background: linear-gradient(to bottom, #00500F, #348b01);
@@ -26,12 +27,14 @@ header {
     }
 }
 
+// När man rör på logotypen så lyfts den lite
 .logo-link {
     &:hover {
         transform: translateY(-2px);
     }
 }
 
+// Länken till startsidan i headern
 .link-home {
     display: flex;
     align-items: center;

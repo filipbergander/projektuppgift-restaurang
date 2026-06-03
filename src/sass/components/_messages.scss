@@ -1,4 +1,5 @@
 @use "../abstracts/animations" as *;
+// Text som visas när formulär submittas
 #loading-text {
     font-size: 1.5em;
     animation: pulseText 2s infinite;
@@ -6,6 +7,7 @@
     text-align: center;
 }
 
+// Felmeddelanden i formulär
 .error-message {
     color: rgb(207, 2, 2);
     font-weight: bold;
@@ -16,6 +18,7 @@
     }
 }
 
+// "Lyckade" meddelanden i formulär
 .success-message {
     display: flex;
     align-items: center;

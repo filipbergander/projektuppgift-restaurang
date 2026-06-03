@@ -1,3 +1,4 @@
+// Mixins för knappar inom webbplatsen
 @use "variables" as *;
 @mixin cta-btn($background-color) {
     background-color: $background-color;

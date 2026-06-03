@@ -5,36 +5,47 @@ import '../sass/main.scss'
 //const url = "https://fb-backend-api-p9fp.onrender.com";
 const url = "http://localhost:3000";
 document.addEventListener("DOMContentLoaded", () => {
-    fetchDinnerDishes();
-    fetchCategoryImages();
-    initBookingForm();
+    fetchDinnerDishes(); // Hämtar in maträtter till kvällsmenyn
+    fetchCategoryImages(); // hämtar in bilder för kvällsmenyn
+    initBookingForm(); // Initierar bokningsformuläret
 });
 
-// Hämtar maträtter till middagsmeny från webbtjänst
+/**
+ * Hämtar maträtter till middagsmeny från webbtjänsten
+ * @returns {void} - Returnerar ingenting
+ */
 async function fetchDinnerDishes() {
     // Om man inte är på sidan med middagsmenyn -> return
     const loadingText = document.getElementById("loading-text");
     if (!loadingText) return;
     // Meddelande innan data har hämtats i backend
     loadingText.textContent = "Hämtar maträtter från databasen, vänta på att servern ska vakna..."
+    loadingText.style.textAlign = "center";
     try {
         const response = await fetch(`${url}/dinner`);
 
         if (!response.ok) {
-            throw Error(`Fel hos server, kunde inte hämta maträtter : ${response.status}`)
+            loadingText.textContent = `Kunde inte hämta maträtter från servern ${response.status}.`
+            loadingText.style.textAlign = "center";
+            return;
         }
         const dinnerDishes = await response.json();
-        loadingText.textContent = ""; // Tömmer tidigare maträtter innan nya hämtas
         if (dinnerDishes.length === 0) {
             loadingText.textContent = "Inga maträtter finns tillagda i middagsmenyn än..."
             loadingText.style.textAlign = "center";
             return;
         }
+        loadingText.textContent = ""; // Tömmer tidigare maträtter innan nya hämtas
         renderDinnerDishes(dinnerDishes);
     } catch (error) {
-        console.error("Kunde inte hämta middags-maträtter: ", error);
+        // Om inte servern är uppväckt...
+        if (error.message === "timeout") {
+            loadingText.textContent = "Servern startar upp, prova igen strax..."
+            loadingText.style.textAlign = "center";
+            return;
+        } else if
         // Vid connection error om inte backend skulle vara igång
-        if (error.message === "Failed to fetch") {
+        (error.message === "Failed to fetch") {
             loadingText.textContent = "Kunde inte ansluta till servern, kontrollera att backend är igång..."
             loadingText.style.textAlign = "center";
             loadingText.style.color = "#a00000";
@@ -44,10 +55,14 @@ async function fetchDinnerDishes() {
         loadingText.textContent = "Fel uppstod när maträtterna skulle hämtas in..."
         loadingText.style.textAlign = "center";
         loadingText.style.color = "#a00000";
+        console.error("Kunde inte hämta middags-maträtter: ", error);
     }
 }
 
-// Renderar alla maträtter och drycker
+/**
+ * Renderar alla maträtter och drycker i sin egna kategori, genom filtrering efter kategori som finns i databasen
+ * @param {string[]} dinnerDishes - Info om maträtterna från backend, namn, beskrivning, pris och kategori
+ */
 function renderDinnerDishes(dinnerDishes) {
     //Hämtar in
     const starterCont = document.getElementById("starter-container");
@@ -100,7 +115,10 @@ function renderDinnerDishes(dinnerDishes) {
     });
 }
 
-// Hämtar in bilder för varje kategori av mat/dryck från backend
+/**
+ * Hämtar in bilder för varje kategori av mat/dryck från backend
+ * @returns {void} - Returnerar ingenting
+ */
 async function fetchCategoryImages() {
     const loadingText = document.getElementById("loading-text");
     const imageSection = document.querySelectorAll(".dish-category");
@@ -124,6 +142,10 @@ async function fetchCategoryImages() {
     }
 }
 
+/**
+ * Renderar bilderna inom sin kategori av maträtt eller dryck, filtrerar efter kategorin som finns i databasen
+ * @param {string[]} dataImages - Info om bilderna som hämtats in från backend, url till bilder och kategori samt alt-text
+ */
 async function renderDinnerImages(dataImages) {
     // Containers för respektive matkategori
     const starterImg = document.getElementById("starter-category");
@@ -155,7 +177,10 @@ async function renderDinnerImages(dataImages) {
     });
 }
 
-// Visar felmeddelande om användaren inte har godkänt integritetspolicyn när de försöker slutföra bokningen
+/**
+ * Initierar bokningsformuläret, visar felmeddelanden i DOM, skapar sedan bokning mot backend 
+ * @returns {void} - Returnerar ingenting
+ */
 function initBookingForm() {
     // Formuläret med knapp, checkbox
     const bookingForm = document.getElementById("booking-form");
@@ -165,7 +190,7 @@ function initBookingForm() {
     // Felmeddelandet ovanför submit-knappen
     const errorMessage = document.getElementById("button-error-text");
 
-    // Om inte elementen finns finns, -> return
+    // Om inte elementen finns, -> return
     if (!bookingBtn || !checkbox || !errorMessage || !bookingForm) return;
 
     // Inputs i formuläret
@@ -209,7 +234,7 @@ function initBookingForm() {
             bookingForm.scrollIntoView({ behavior: "smooth" }); // Scrollar upp till felmeddelanden
             return;
         }
-
+        // Specifika valideringar för varje input och sitt eget felmeddelande
         if (!name) {
             errors.push("Fyll i ditt namn")
         } else if (name.length > 30) {
@@ -274,7 +299,10 @@ function initBookingForm() {
     })
 };
 
-// Skapar bokning mot backend
+/**
+ * Skapar en bokning av bord, anrop mot backend med formulärets data
+ * @returns {void} - Returnerar ingenting
+ */
 async function createBooking() {
 
     // Formuläret
@@ -346,6 +374,7 @@ async function createBooking() {
         }, 1500);
 
     } catch (error) {
+        // Olika hantering av felmeddelanden beroende på vad som faktiskt gick fel
         if (error.message === "timeout") {
             loadingSpinner.classList.add("hidden");
             loginBtn.disabled = false;
@@ -368,19 +397,28 @@ async function createBooking() {
     }
 }
 
-
+/**
+ * Visar felmeddelanden i DOM
+ * @param {string[]} errors - Felmeddelanden som skapats i frontend
+ * @param {HTMLUListElement} errorMsgList - Elementen i DOM där felmeddelanden ska visas
+ */
 function displayErrorMessages(errors, errorMsgList) {
     errorMsgList.innerHTML = "";
+    // skapar li för varje felmeddelande och lägger till i DOM
     errors.forEach(error => {
         const li = document.createElement("li");
-        li.textContent = error;
-        errorMsgList.appendChild(li);
+        li.textContent = error; // Li får felmeddelandet
+        errorMsgList.appendChild(li); // Lägger till i DOM
     });
 }
-
+/**
+ * Återställer bokningsformuläret, tömmer inputs och avmarkerar checkboxen
+ */
 function resetBookingForm() {
+    // Formuläret
     const bookingForm = document.getElementById("booking-form");
 
+    // Inputs i formuläret
     const nameInput = document.getElementById("booking-name");
     const emailInput = document.getElementById("booking-email");
     const dateInput = document.getElementById("booking-date");
@@ -390,6 +428,7 @@ function resetBookingForm() {
     const messageInput = document.getElementById("booking-message");
     const privacyCheckbox = document.getElementById("booking-privacy");
 
+    // Tömmer inputs och återställer checkboxen
     nameInput.value = "";
     emailInput.value = "";
     dateInput.value = "";

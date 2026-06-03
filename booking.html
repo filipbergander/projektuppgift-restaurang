@@ -16,12 +16,14 @@
 </head>
 
 <body class="dinner-body">
+    <!--Header med logotyp och navigering till startsidan-->
     <header>
         <a href="index.html"><img src="./icon/logo-lema.png" alt="Företagslogotyp Trattoria Lema" width="260" height="60"></a>
         <nav>
             <a href="index.html" class="link-home"><span class="material-symbols-outlined">home</span>Hem</a>
         </nav>
     </header>
+    <!--Brödsmulor för navigering-->
     <div class="sub-header">
         <nav aria-label="Navigering för brödsmulor">
             <ol class="breadcrumbs">
@@ -33,14 +35,15 @@
     <main class="booking-main">
         <h1><span class="material-symbols-outlined">calendar_add_on</span>Boka bord</h1>
         <div class="booking-container">
+            <!--Bokningsformulär för bord-->
             <form id="booking-form" method="post">
                 <h2>Kvällsmeny</h2>
                 <p>Fyll i dina uppgifter och önskemål</p>
-
+                <!--Felmeddelanden-->
                 <div class="error-message">
                     <ul></ul>
                 </div>
-
+                <!--Inputs i formuläret-->
                 <div class="input-area">
                     <label for="booking-name">Namn</label>
                     <input type="text" id="booking-name" name="booking-name" maxlength="30" placeholder="Skriv ditt namn">
@@ -75,7 +78,7 @@
                     <label for="booking-message">Meddelande</label>
                     <textarea id="booking-message" name="booking-message" maxlength="150" placeholder="Något vi bör känna till? Skriv din kommentar här" rows="4" cols="50"></textarea>
                 </div>
-
+                <!--Fiktiv-länk till integritetspolicy-->
                 <div class="input-area-privacy">
                     <input type="checkbox" id="booking-privacy" name="booking-privacy">
                     <label class="checkbox-label" for="booking-privacy">Jag intygar att jag har läst och förstått
@@ -84,6 +87,7 @@
                 <div>
                     <p id="button-error-text" class="hidden">Du måste godkänna integritetspolicyn</p>
                 </div>
+                <!--"Lyckat"-meddelande till användaren-->
                 <div class="success-message">
                     <ul></ul><span class="loading-spinner hidden"></span>
                 </div>
@@ -92,11 +96,13 @@
                         assignment_turned_in
                     </span></button>
             </form>
+            <!--Bild under formuläret-->
             <div class="booking-image-container">
                 <img src="./images/druvor.svg" loading="lazy" alt="Vindruvor med blommor" width="300" height="400" class="booking-image">
             </div>
         </div>
     </main>
+    <!--Footer med fiktiva "länkar"-->
     <footer>
         <div class="footer-container">
             <div class="footer-frame">
@@ -105,6 +111,7 @@
                     <a href="mailto:info@trattoria.lema.se" onclick="event.preventDefault()">info@trattoria.lema.se</a><br>
                     <a href="tel:+393963944" onclick="event.preventDefault()">+39 396 39 44</a>
                 </section>
+                <!--Länkar till sidor som inte är riktiga, går inte klicka på-->
                 <section class="links-section">
                     <h3>Webbplatsen</h3>
                     <a href="#" onclick="event.preventDefault()">Integritetspolicy</a>
@@ -113,6 +120,7 @@
                 </section>
             </div>
         </div>
+        <!--Ikoner till sociala medier "fiktiva"-->
         <div class="footer-socials">
             <a href="https://www.facebook.com/Trattorialema" onclick="event.preventDefault()" aria-label="Facebook"><svg
                     xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 512 512"

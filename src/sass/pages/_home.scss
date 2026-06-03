@@ -1,8 +1,10 @@
 @use "../abstracts/variables" as *;
+// Startsidan
 .home-main {
     background-color: #F4FFF8;
 }
 
+// Informationsavsnittet om "Om oss"
 .about-section {
     display: flex;
     align-items: center;
@@ -27,6 +29,7 @@
     }
 }
 
+// Rubrik i varje artikel/sektion
 h2 {
     display: flex;
     align-items: center;
@@ -34,6 +37,17 @@ h2 {
     gap: 4px;
 }
 
+// div runt öppettiderna och hitta hit-sektionen
+.info-sections {
+    background-color: #f7f3e96e;
+    width: 60%;
+    margin: 3em auto;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.158);
+}
+
+// Öppettider
 .opening-container {
     display: flex;
     flex-direction: column;
@@ -46,6 +60,7 @@ h2 {
     }
 }
 
+// Bild
 .citrus-tree {
     display: block;
     max-width: 300px;
@@ -53,6 +68,7 @@ h2 {
     margin: 2em auto;
 }
 
+// Herosektion med bild och text
 .hero {
     position: relative;
     width: 100%;
@@ -83,6 +99,7 @@ h2 {
     }
 }
 
+// För att texten ska synas bättre och ligga ovanför bilden
 #hero-overlay {
     position: absolute;
     inset: 0;
@@ -92,12 +109,14 @@ h2 {
     background-color: #00000025;
 }
 
+// Bildcontainern
 .hero-image {
     position: absolute;
     inset: 0;
     z-index: 1;
 }
 
+// Hero-bilden
 .hero-image img {
     z-index: 5;
     display: block;
@@ -117,6 +136,7 @@ h2 {
     }
 }
 
+// "Hitta hit" sektion med karta och adress till restaurangen
 .location-container {
     display: flex;
     flex-direction: column;
@@ -142,15 +162,6 @@ h2 {
         border-radius: 8px;
         box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.144);
     }
-}
-
-.info-sections {
-    background-color: #f7f3e96e;
-    width: 60%;
-    margin: 3em auto;
-    padding: 2em;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.158);
 }
 
 @media screen and (max-width: 790px) {

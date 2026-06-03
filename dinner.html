@@ -16,12 +16,14 @@
 </head>
 
 <body class="dinner-body">
+    <!--Header med logotyp och navigering till startsidan-->
     <header>
         <a href="index.html"><img src="./icon/logo-lema.png" alt="Företagslogotyp Trattoria Lema" width="260" height="60"></a>
         <nav>
             <a href="index.html" class="link-home"><span class="material-symbols-outlined">home</span>Hem</a>
         </nav>
     </header>
+    <!--Brödsmulor för navigering-->
     <div class="sub-header">
         <nav aria-label="Navigering för brödsmulor">
             <ol class="breadcrumbs">
@@ -31,6 +33,7 @@
         </nav>
     </div>
     <main class="dinner-main">
+        <!--Kvällsmenyn-->
         <section class="dinner-section">
             <h1><span class="material-symbols-outlined">local_dining</span>Kvällsmeny</h1>
             <article class="subheading-info">
@@ -40,6 +43,7 @@
             <div id="loading-text"></div>
             <div class="food-container">
                 <div>
+                    <!--Förrätter inom menyn-->
                     <article id="starter-category" class="dish-category">
                         <div class="category-header">
                             <h3>Förrätt</h3>
@@ -48,6 +52,7 @@
                         <div class="dish-items-container" id="starter-container">
                         </div>
                     </article>
+                    <!--Huvudrätter inom menyn-->
                     <article id="mains-category" class="dish-category">
                         <div class="category-header">
                             <h3>Huvudrätt</h3>
@@ -56,15 +61,18 @@
                         <div class="dish-items-container" id="mains-container">
                         </div>
                     </article>
+                    <!--Efterrätter inom menyn-->
                     <article id="dessert-category" class="dish-category">
                         <div class="category-header">
                             <h3>Efterrätt</h3>
                             <p class="subheading-item">Dolci</p>
                         </div>
                         <div class="dish-items-container" id="dessert-container">
+
                         </div>
                     </article>
                 </div>
+                <!--Drycker inom menyn-->
                 <div>
                     <article id="drink-category" class="dish-category">
                         <div class="category-header">
@@ -77,9 +85,11 @@
                 </div>
             </div>
         </section>
+        <!--Bild på en olivgren som skiljer avsnitten åt-->
         <div>
             <img src="./images/olive-branch.png" alt="Gren från olivträd" loading="lazy" width="400" class="olive-branch">
         </div>
+        <!--Information om allergier och råd till besökaren-->
         <div class="info-container">
             <article>
                 <h2>Gällande allergier</h2>
@@ -100,6 +110,7 @@
             </article>
         </div>
     </main>
+    <!--Footer med fiktiva "länkar"-->
     <footer>
         <div class="footer-container">
             <div class="footer-frame">
@@ -116,6 +127,7 @@
                 </section>
             </div>
         </div>
+        <!--Ikoner till sociala medier "fiktiva"-->
         <div class="footer-socials">
             <a href="https://www.facebook.com/Trattorialema" onclick="event.preventDefault()" aria-label="Facebook"><svg
                     xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 512 512"

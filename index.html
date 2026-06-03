@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <!--Header med logotyp och navigering till startsidan-->
     <header>
         <a href="index.html" class="logo-link"><img src="./icon/logo-lema.png" alt="Företagslogotyp Trattoria Lema" width="260" height="60"></a>
         <nav>
@@ -23,6 +24,7 @@
         </nav>
     </header>
     <main class="home-main">
+        <!--Hero-bild med rubrik-->
         <section class="hero">
             <picture class="hero-image">
                 <!-- Laddar in minst bild vid mobilläge, upplevde ännu mindre bilder som för suddiga i mobilläget, därför denna storlek -->
@@ -39,11 +41,13 @@
                 <!-- fallback bild -->
                 <img src="./images/hero/hero-1400.jpg" alt="Trattoria med besökare som äter längs en älv" fetchpriority="high" loading="eager" width="1400" height="933" decoding="async">
             </picture>
+            <!--Overlay med rubrik-->
             <div id="hero-overlay"> </div>
             <div class="hero-text">
                 <h1>Hemtrevligt. Äkta. <br><span>Din lokala Trattoria</span></h1>
             </div>
         </section>
+        <!--Knappar för navigering till undersidor-->
         <div class="btn-container">
             <a href="dinner.html" class="dinner-btn">Kvällsmeny<span
                     class="material-symbols-outlined">local_dining</span></a>
@@ -55,6 +59,7 @@
             <h2><span class="material-symbols-outlined">newspaper</span>Nyheter</h2>
             <p>Vi har just nu öppet för bokningar! Boka ditt bord idag och njut av en fantastisk italiensk kväll.</p>
         </article>
+        <!-- Om oss beskrivning-->
         <section class="about-section">
             <article>
                 <h2><span class="material-symbols-outlined">diversity_3</span>Om oss</h2>
@@ -62,11 +67,12 @@
                     och rustika smaker. Välkommen till din lokala Trattoria.
                 </p>
             </article>
+            <!--Bild på citronträd för att skilja avsnitten åt varandra-->
             <div>
                 <img src="./images/citrus-tree.png" alt="Citronträd med grenar" class="citrus-tree" width="200" height="150">
             </div>
         </section>
-
+        <!--Öppettider-->
         <div class="info-sections">
             <section class="opening-container">
                 <h2><span class="material-symbols-outlined">schedule</span>Öppettider</h2>
@@ -79,7 +85,7 @@
                     <img src="" alt="">
                 </div>
             </section>
-
+            <!--Hur man hittar till Trattorian, karta från google maps.-->
             <section class="location-container">
                 <h2><span class="material-symbols-outlined">location_on</span>Hitta hit</h2>
                 <div class="location-info">
@@ -94,6 +100,7 @@
             </section>
         </div>
     </main>
+    <!--Footer med fiktiva "länkar"-->
     <footer>
         <div class="footer-container">
             <div class="footer-frame">
@@ -110,6 +117,7 @@
                 </section>
             </div>
         </div>
+        <!--Ikoner till sociala medier "fiktiva"-->
         <div class="footer-socials">
             <a href="https://www.facebook.com/Trattorialema" onclick="event.preventDefault()" aria-label="Facebook"><svg
                     xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 512 512"

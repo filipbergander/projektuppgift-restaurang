@@ -13,6 +13,7 @@
     "vite": "^8.0.10"
   },
   "dependencies": {
+    "jsdoc": "^4.0.5",
     "normalize.css": "^8.0.1"
   }
 }
