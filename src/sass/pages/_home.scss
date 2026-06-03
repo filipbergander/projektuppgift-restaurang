@@ -15,8 +15,8 @@
     border: 3px double #b8a27a;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.144);
     width: 50%;
-    margin-bottom: 2em;
-    padding: clamp(0.5em, 3vw, 1em) clamp(0.5em, 3vw, 1em);
+    margin-bottom: 7em;
+    padding: 2em;
     border-radius: 8px;
     h2 {
         text-align: center;
@@ -40,7 +40,7 @@ h2 {
 // div runt öppettiderna och hitta hit-sektionen
 .info-sections {
     background-color: #f7f3e96e;
-    width: 60%;
+    width: 50%;
     margin: 3em auto;
     padding: 2em;
     border-radius: 8px;
@@ -164,6 +164,15 @@ h2 {
     }
 }
 
+@media screen and (max-width: 900px) {
+    .about-section {
+        width: 80%;
+    }
+    .info-sections {
+        width: 80%;
+    }
+}
+
 @media screen and (max-width: 790px) {
     .hero {
         position: relative;
@@ -228,6 +237,7 @@ h2 {
 @media screen and (max-width: 425px) {
     .about-section {
         width: 100%;
+        padding: 1em;
         padding h2 {
             text-align: center;
         }

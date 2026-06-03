@@ -1,0 +1,107 @@
+// Nyhetsartikeln
+.news-article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    margin: 0 auto;
+    width: 100%;
+    border-left: 4px solid #fa8e00;
+    background-color: white;
+    box-shadow: 0 0 10px 1px black;
+    border-radius: 24px;
+    padding: 1.5em;
+    line-height: 1.4;
+    word-wrap: break-word;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    .news-title {
+        text-align: center;
+        margin-bottom: 0.3em;
+        font-size: 1.4em;
+        line-height: 1.2;
+    }
+    .news-content {
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        width: 100%;
+        word-wrap: break-word;
+        max-width: 65ch;
+        white-space: pre-wrap;
+        line-height: 1.1;
+        border-bottom: 1px solid #6b6b6a6b;
+    }
+    .news-headline {
+        text-align: center;
+        font-size: 1.5em;
+        color: rgb(1, 29, 20);
+        margin-bottom: 0.5em;
+    }
+}
+
+// Huvudinnehållet för varje nyhetsartikel
+#article-container {
+    margin: 4em auto;
+    width: 50%;
+    max-width: 800px;
+    border-radius: 8px;
+    padding: 2em;
+    h2 {
+        color: rgb(1, 29, 20);
+        margin-bottom: 0.5em;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #article-container {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    #article-container {
+        width: 90%;
+        padding: 0em;
+    }
+    .news-article {
+        padding: 1em;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .news-article {
+        width: 100%;
+    }
+    #add-news-form {
+        width: 100%;
+        border-radius: 0px;
+        input {
+            padding: 0.5em;
+            border-radius: 4px;
+            border: 0.5px solid rgb(5, 116, 29);
+        }
+        #news-content {
+            display: block;
+            overflow: hidden;
+            resize: vertical;
+            max-height: 300px;
+            padding: 0.5em;
+        }
+    }
+    #news-container {
+        margin: 2em 0em 2em;
+        width: 100%;
+        border-radius: 0px;
+        padding: 0.5em;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    #article-container {
+        width: 100%;
+        padding: 0em;
+    }
+    .news-article {
+        padding: 1em;
+        border-radius: 0px;
+    }
+}

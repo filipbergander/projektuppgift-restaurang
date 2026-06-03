@@ -2,12 +2,13 @@ import '../sass/main.scss'
 
 "use strict";
 // Webbtjänst
-//const url = "https://fb-backend-api-p9fp.onrender.com";
-const url = "http://localhost:3000";
+const url = "https://fb-backend-api-p9fp.onrender.com";
+//const url = "http://localhost:3000";
 document.addEventListener("DOMContentLoaded", () => {
     fetchDinnerDishes(); // Hämtar in maträtter till kvällsmenyn
     fetchCategoryImages(); // hämtar in bilder för kvällsmenyn
     initBookingForm(); // Initierar bokningsformuläret
+    fetchNewsArticle(); // Hämtar in nyhetsartikel
 });
 
 /**
@@ -395,6 +396,71 @@ async function createBooking() {
         displayErrorMessages(["Något gick fel, kunde inte skapa ny bokning"], errorMsgList);
         bookingForm.scrollIntoView({ behavior: "smooth" });
     }
+}
+/**
+ * Hämtar in publicerad nyhetsartikel från backend
+ */
+async function fetchNewsArticle() {
+    const articleContainer = document.getElementById("article-container");
+
+    if (!articleContainer) return; // Om ingen container för nyhetsartikeln finns, -> return
+
+    try {
+        const response = await fetch(`${url}/news`);
+        if (!response.ok) {
+            throw new Error(`Fel hos server, kunde inte hämta nyheter: ${response.status}`);
+        }
+        const newsArticles = await response.json();
+        articleContainer.textContent = ""; // Tömmer tidigare nyhetsartikel
+
+        // Om inga nyhetsartiklar finns lagrade i databasen, visa ingenting
+        if (newsArticles.length === 0) {
+            articleContainer.style.display = "none"; // Döljer hela containern för nyhetsartikeln om ingen nyhet finns
+            return;
+        }
+        articleContainer.style.display = "block"; // Visar containern för nyhetsartikeln om det finns en nyhet
+        renderNewsArticle(newsArticles); // Renderar nyhetsartikeln i DOM
+    } catch (error) {
+        articleContainer.style.display = "none";
+        console.error(error);
+    }
+}
+
+/**
+ * Skapar och skriver ut nyhetsartikel i DOM från inlägget som skapats och lagras i databasen
+ * @param {{headline: string, content: string, author:string, createdAt: date}} newsArticles 
+ */
+async function renderNewsArticle(newsArticles) {
+    const articleContainer = document.getElementById("article-container");
+
+    if (!articleContainer) return; // Return om ingen container för nyhetsartikeln finns, alltså befinner sig på en annan sida
+
+    articleContainer.textContent = ""; // Tömmer tidigare nyhetsartikel
+
+    newsArticles.forEach(article => {
+        // Skapar artikel för nyhetsartikeln
+        const articleEl = document.createElement("article");
+        articleEl.classList.add("news-article");
+        articleContainer.appendChild(articleEl);
+
+        // skapar rubrik för hela artikel-elementet
+        const newsHeadline = document.createElement("h2");
+        newsHeadline.classList.add("news-headline");
+        newsHeadline.textContent = "Nyheter";
+        articleEl.appendChild(newsHeadline);
+
+        // Skapar titel på nyhetsartikeln
+        const title = document.createElement("h3");
+        title.classList.add("news-title");
+        title.textContent = article.headline;
+        articleEl.appendChild(title);
+
+        // Inläggets innehåll
+        const content = document.createElement("p");
+        content.classList.add("news-content");
+        content.textContent = article.content;
+        articleEl.appendChild(content);
+    });
 }
 
 /**
