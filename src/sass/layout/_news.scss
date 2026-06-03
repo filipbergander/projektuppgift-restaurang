@@ -1,3 +1,4 @@
+@use "../abstracts/variables" as *;
 // Nyhetsartikeln
 .news-article {
     display: flex;
@@ -13,11 +14,11 @@
     padding: 1.5em;
     line-height: 1.4;
     word-wrap: break-word;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: $primary-font;
     .news-title {
         text-align: center;
         margin-bottom: 0.3em;
-        font-size: 1.4em;
+        font-size: 1.3em;
         line-height: 1.2;
     }
     .news-content {

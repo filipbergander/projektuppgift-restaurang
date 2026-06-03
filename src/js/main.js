@@ -596,7 +596,7 @@
       nameInput.value = "";
       emailInput.value = "";
       dateInput.value = "";
-      timeInput.value = "";
+      timeInput.value = "16:00";
       guestsInput.value = "";
       phoneInput.value = "";
       messageInput.value = "";

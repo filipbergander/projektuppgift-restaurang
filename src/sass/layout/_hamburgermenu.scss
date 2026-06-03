@@ -79,6 +79,9 @@
                font-size: 2rem;
            }
        }
+       .hidden {
+           display: none !important;
+       }
        .search-area {
            margin: 0;
            margin-left: auto;
@@ -90,5 +93,17 @@
            border-left: 5px solid #ff7b00;
            box-shadow: none;
            font-weight: normal;
+       }
+   }
+   
+   @media screen and (max-width: 425px) {
+       #close-sidebarbutton,
+       #open-sidebarbutton {
+           font-size: 1rem;
+           margin-right: 0.5rem;
+           .material-symbols-outlined {
+               color: #ffffff;
+               font-size: 2rem;
+           }
        }
    }
