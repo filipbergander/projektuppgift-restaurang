@@ -15,12 +15,13 @@
     line-height: 1.4;
     word-wrap: break-word;
     font-family: $primary-font;
+    // Titel på nyhetsartikeln
     .news-title {
         text-align: center;
         margin-bottom: 0.3em;
         font-size: 1.3em;
         line-height: 1.2;
-    }
+    } // Innehållet i nyhetsartikeln
     .news-content {
         margin-top: 0.5em;
         margin-bottom: 1em;
@@ -28,10 +29,10 @@
         word-wrap: break-word;
         max-width: 65ch;
         white-space: pre-wrap;
-        line-height: 1.1;
+        line-height: 1.25;
         padding-bottom: 0.5em;
         border-bottom: 1px solid #6b6b6a6b;
-    }
+    } // Rubriken "Nyheter"
     .news-headline {
         text-align: center;
         font-size: 1.5em;
